@@ -1,0 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #111111;
+}
+
+#app table {
+  width: 100%;
+}
+
+#app td {
+  /* width: 40px; */
+  height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 90%;
+  background-size: 100% 100%;
+  color: white;
+}
+
+#app td[data-color="1"] {
+  background-image: url('../assets/green-gem.png');
+}
+
+#app td[data-color="2"] {
+  background-image: url('../assets/red-gem.png');
+}
+
+#app td[data-color="3"] {
+  background-image: url('../assets/white-gem.png');
+}

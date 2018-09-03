@@ -1,0 +1,5 @@
+public
+node_modules
+.firebase
+.firebaserc
+firebase.json
