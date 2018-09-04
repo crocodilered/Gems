@@ -30,8 +30,10 @@ body {
   vertical-align: middle;
   font-size: 80%;
   background-size: 100% 100%;
-  color: white;
-  text-shadow: 1px 1px 2px black;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  /* color: white; */
+  /* text-shadow: 1px 1px 2px black; */
 }
 
 #app td[data-color="1"] {
