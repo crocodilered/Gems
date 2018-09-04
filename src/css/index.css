@@ -7,10 +7,16 @@ body {
   background-color: #111111;
 }
 
-#app {
+.wrapper {
+  display: table;
   position: absolute;
-  bottom: 0;
+  height: 100%;
   width: 100%;
+}
+
+.sub-wrapper {
+  display: table-cell;
+  vertical-align: middle;
 }
 
 #app table {
