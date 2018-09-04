@@ -7,7 +7,7 @@ class Presenter {
   }
 
   run () {
-    this.model.populate()
+    this.model.populate(this.model.EMERALD)
     this.view.setSwipeCallback((elem, direction) => this.swipeCallback(elem, direction))
     this.view.render(this.model)
   }

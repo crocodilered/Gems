@@ -11,7 +11,7 @@ import Presenter from 'classes/Presenter'
 class App {
 
   constructor () {
-    const model = new Model({ width: 9, height: 9 })
+    const model = new Model({ width: 5, height: 5 })
     const view = new View('app')
     this.presenter = new Presenter(model, view)
   }

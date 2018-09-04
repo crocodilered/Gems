@@ -34,11 +34,15 @@ class Model {
     this.table[y][x] = null
   }
 
-  populate () {
+  /**
+   * Populate model with gems.
+   * If type is defined, gems have same color == fixedColor
+   */
+  populate (fixedColor=null) {
     for (let y = 0; y < this.size.height; y++) {
       let row = []
       for (let x = 0; x < this.size.width; x++) {
-        const color = Gem.randomColor()
+        const color = fixedColor || Gem.randomColor()
         row.push(new Gem(color, 1))
       }
       this.table.push(row)
