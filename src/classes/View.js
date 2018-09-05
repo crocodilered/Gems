@@ -11,24 +11,29 @@ class View {
     this.cellSize = null // Size of cell
   }
 
-  // run once before 1st render
+  // Run once before 1st render
   preRender (model) {
-    this.cellSize = screen.width / model.size.width
-    this.rootElem.style.top = ((screen.height - screen.width) / 2) + 'px'
-  }
-
-  render (model) {
-    this.rootElem.innerHTML = this.html(model)
-    const cells = this.rootElem.getElementsByTagName('div')
+    const body = document.body
+    const doc = document.documentElement
+    const w = body.clientWidth
+    const h = Math.max(body.scrollHeight, body.offsetHeight, doc.clientHeight, doc.scrollHeight, doc.offsetHeight)
+    if (w < h) {
+      // Portrait
+      this.cellSize = w / model.size.width
+      this.rootElem.style.top = ((h - w) / 2) + 'px'
+    } else {
+      // Landscape
+      this.cellSize = h / model.size.height
+      this.rootElem.style.left = ((w - h) / 2) + 'px'
+      this.rootElem.style.width = (this.cellSize * model.size.width) + 'px'
+    }
     if (this.swipeCallback) {
-      for (let i = 0; i < cells.length; i++) {
-        /* eslint-disable no-new */
-        new SwipeDetector(cells[i], (elem, direction) => this.swipeCallback(elem, direction))
-      }
+      /* eslint-disable no-new */
+      new SwipeDetector(this.rootElem, (elem, direction) => this.swipeCallback(elem, direction))
     }
   }
 
-  html (model) {
+  render (model) {
     let html = ''
     if (!this.cellSize) this.preRender(model)
     for (let y = 0; y < model.size.height; y++) {
@@ -36,7 +41,7 @@ class View {
         html += this.cellHtml(x, y, model)
       }
     }
-    return html
+    this.rootElem.innerHTML = html
   }
 
   cellHtml (x, y, model) {

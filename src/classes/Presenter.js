@@ -15,7 +15,8 @@ class Presenter {
   swipeCallback (elem, direction) {
     let x = parseInt(elem.getAttribute('data-x'))
     let y = parseInt(elem.getAttribute('data-y'))
-    if (this.moveGem(x, y, direction)) this.view.render(this.model)
+    const moved = this.moveGem(x, y, direction)
+    if (moved) this.view.render(this.model)
   }
 
   moveGem (x1, y1, direction) {
@@ -33,6 +34,9 @@ class Presenter {
     let gem1 = this.model.get(x1, y1)
     let gem2 = this.model.get(x2, y2)
 
+    // Do we have gems?
+    if (!gem1 || !gem2) return false
+
     // Test if merging gems has same color
     if (gem1 && gem2 && gem1.color !== gem2.color) return false
 
@@ -40,6 +44,8 @@ class Presenter {
     gem2.weight = (gem1.weight <= gem2.weight)
       ? gem2.weight + 1
       : gem1.weight - 1
+
+    this.model.clear(x1, y1)
 
     // Move row
     if (direction === 'l') this.moveRowLeft(x1, y1)

@@ -1,10 +1,14 @@
 class SwipeDetector {
 
-  constructor (elem, func) {
-    if (!elem || !func || typeof func !== 'function') return
+  constructor (elem, callback) {
+    if (!elem || !callback || typeof callback !== 'function') return
+
+    this.cell = null // Selected cell
+    this.callback = callback
+    this.direction = ''
 
     this.sX = 0
-    this.sY = 0
+    this.sY = 1
     this.eX = 0
     this.eY = 0
 
@@ -12,44 +16,50 @@ class SwipeDetector {
     this.maxX = 40  // max x difference for vertical swipe
     this.minY = 10  // min y swipe for vertical swipe
     this.maxY = 40  // max y difference for horizontal swipe
-    this.direction = ''
 
-    elem.addEventListener('touchstart', event => {
-      event.preventDefault()
-      let t = event.touches[0]
-      this.sX = t.screenX
-      this.sY = t.screenY
-    }, false)
+    elem.addEventListener('mousedown', event => this.swipeStart(event), false)
+    elem.addEventListener('touchstart', event => this.swipeStart(event), false)
 
-    elem.addEventListener('touchmove', event => {
-      event.preventDefault()
-      let t = event.touches[0]
-      this.eX = t.screenX
-      this.eY = t.screenY
-    }, false)
+    elem.addEventListener('mousemove', event => this.swipeMove(event), false)
+    elem.addEventListener('touchmove', event => this.swipeMove(event), false)
 
-    elem.addEventListener('touchend', event => {
-      event.preventDefault()
-      if (this.isVertSwipe()) {
-        this.direction = (this.eX > this.sX) ? 'r' : 'l'
-      } else if (this.isHorizSwipe()) {
-        this.direction = (this.eY > this.sY) ? 'd' : 'u'
-      }
-      if (this.direction !== '') {
-        func(elem, this.direction)
-      }
-    }, false)
+    elem.addEventListener('mouseup', event => this.swipeStop(event), false)
+    elem.addEventListener('touchend', event => this.swipeStop(event), false)
   }
 
-  isVertSwipe () {
+  swipeStart (event) {
+    event.preventDefault()
+    event.stopPropagation()
+    /* eslint-disable no-undef */
+    const point = (event instanceof TouchEvent) ? event.touches[0] : event
+    this.sX = point.screenX
+    this.sY = point.screenY
+    this.cell = event.target
+  }
+
+  swipeMove (event) {
+    event.preventDefault()
+    event.stopPropagation()
+    /* eslint-disable no-undef */
+    const point = (event instanceof TouchEvent) ? event.touches[0] : event
+    this.eX = point.screenX
+    this.eY = point.screenY
+  }
+
+  swipeStop (event) {
+    event.preventDefault()
+    event.stopPropagation()
+    if (this.isVerticalSwipe()) {
+      this.direction = (this.eX > this.sX) ? 'r' : 'l'
+    } else {
+      this.direction = (this.eY > this.sY) ? 'd' : 'u'
+    }
+    this.callback(this.cell, this.direction)
+  }
+
+  isVerticalSwipe () {
     const a = ((this.eX - this.minX > this.sX) || (this.eX + this.minX < this.sX))
     const b = ((this.eY < this.sY + this.maxY) && (this.sY > this.eY - this.maxY) && (this.eX > 0))
-    return (a && b)
-  }
-
-  isHorizSwipe () {
-    const a = ((this.eY - this.minY > this.sY) || (this.eY + this.minY < this.sY))
-    const b = ((this.eX < this.sX + this.maxX) && (this.sX > this.eX - this.maxX) && (this.eY > 0))
     return (a && b)
   }
 
