@@ -7,7 +7,7 @@ class Presenter {
   }
 
   run () {
-    this.model.populate(this.model.EMERALD)
+    this.model.populate()
     this.view.setSwipeCallback((elem, direction) => this.swipeCallback(elem, direction))
     this.view.render(this.model)
   }
@@ -21,15 +21,15 @@ class Presenter {
   moveGem (x1, y1, direction) {
     let x2 = x1
     let y2 = y1
-    
+
     if (direction === 'l' && x1 > 0) x2 = x1 - 1
     if (direction === 'u' && y1 > 0) y2 = y1 - 1
     if (direction === 'r' && x1 < this.model.size.width - 1) x2 = x1 + 1
     if (direction === 'd' && y1 < this.model.size.height - 1) y2 = y1 + 1
-    
+
     // Test if x2 or y2 changed
     if (x1 === x2 && y1 === y2) return false
-    
+
     let gem1 = this.model.get(x1, y1)
     let gem2 = this.model.get(x2, y2)
 
@@ -37,9 +37,9 @@ class Presenter {
     if (gem1 && gem2 && gem1.color !== gem2.color) return false
 
     // Everythin is okay, merge gems
-    gem2.weight = (gem1.weight > gem2.weight)
-      ? gem1.weight - gem2.weight
-      : gem2.weight + gem1.weight
+    gem2.weight = (gem1.weight <= gem2.weight)
+      ? gem2.weight + 1
+      : gem1.weight - 1
 
     // Move row
     if (direction === 'l') this.moveRowLeft(x1, y1)
