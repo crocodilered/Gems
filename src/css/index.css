@@ -4,46 +4,30 @@
 }
 
 body {
-  background-color: #111111;
+  background-color: #000000;
 }
 
-.wrapper {
-  display: table;
+#app {
+  display: flex;
+  flex-wrap: wrap;
   position: absolute;
-  height: 100%;
-  width: 100%;
+  top: 0px;
 }
 
-.sub-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-
-#app table {
-  width: 100%;
-}
-
-#app td {
-  /* width: 40px; */
-  height: 40px;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 80%;
-  background-size: 100% 100%;
+#app .cell {
   background-position: 50% 50%;
   background-repeat: no-repeat;
-  /* color: white; */
-  /* text-shadow: 1px 1px 2px black; */
+  color: white;
 }
 
-#app td[data-color="1"] {
+#app .cell[data-color="1"] {
   background-image: url('../assets/green-gem.png');
 }
 
-#app td[data-color="2"] {
+#app .cell[data-color="2"] {
   background-image: url('../assets/red-gem.png');
 }
 
-#app td[data-color="3"] {
+#app .cell[data-color="3"] {
   background-image: url('../assets/white-gem.png');
 }
