@@ -6,7 +6,7 @@ class Gem {
   }
 
   static randomColor () {
-    return Math.floor(Math.random() * 3) + 1
+    return Math.floor(Math.random() * 2) + 1 // Two gem types only
   }
 
 }
@@ -46,6 +46,20 @@ class Model {
         row.push(new Gem(color, 1))
       }
       this.table.push(row)
+    }
+  }
+
+  /**
+   * Refill empty cells with random gems of small size
+   */
+  refillEmptyCells () {
+    for (let y = 0; y < this.size.height; y++) {
+      for (let x = 0; x < this.size.width; x++) {
+        if (!this.get(x, y)) {
+          const color = Gem.randomColor()
+          this.set(x, y, new Gem(color, 1))
+        }
+      }
     }
   }
 }
