@@ -43,22 +43,10 @@ class Presenter {
     if (!gem1 || !gem2) return false
 
     // Test if merging gems has same color
-    if (gem1 && gem2 && gem1.color !== gem2.color) return false
+    if (gem1.color !== gem2.color) return false
 
     // Everythin is okay, merge gems
-
-    /**
-     * Когда складываешь камни одного цвета они всегда растут, когда разного цвета,
-     * они уменьшаются на величину того, который задвинули внутрь неподвижного.
-     * Но не меньше стартового размера.
-     */
-
-    if (gem1.color === gem2.color) {
-      gem2.weight += 1
-    } else {
-      gem2.weight -= gem1.weight
-      if (gem2.weight < 1) gem2.weight = 1
-    }
+    gem2.weight += gem1.weight
 
     /**
      * Old method of merging
