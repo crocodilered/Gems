@@ -1,4 +1,4 @@
-import App from 'classes/App.js'
+import App from 'App.js'
 import 'css/index.css'
 
 window.addEventListener('load', () => {
