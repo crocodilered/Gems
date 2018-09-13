@@ -12,6 +12,11 @@ class Presenter {
     this.view.render(this.model)
   }
 
+  refillEmptyCells () {
+    this.model.refillEmptyCells()
+    this.view.render(this.model)
+  }
+
   swipeCallback (elem, direction) {
     let x = parseInt(elem.getAttribute('data-x'))
     let y = parseInt(elem.getAttribute('data-y'))
