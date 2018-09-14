@@ -1,0 +1,44 @@
+#nav-drawer-btn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+#nav-drawer-menu {
+  background: rgba(255, 255, 255, .5);
+  width: 0%;
+  max-width: 300px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  transition: .7s;
+  overflow-x: hidden;
+  z-index: 1000;
+  padding-top: 50px;
+}
+
+#nav-drawer-menu.show {
+    width: 60%;
+}
+
+#nav-drawer-menu hr {
+  height: 1px;
+  background: #ffffff;
+  border-width: 0;
+}
+
+#nav-drawer-menu div {
+  padding: 10px;
+  font-size: 1.3rem;
+  font-family: sans-serif;
+  color: #ffffff;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+#nav-drawer-menu div.selected {
+  background: rgba(255, 255, 255, .3);
+}

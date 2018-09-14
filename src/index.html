@@ -3,8 +3,23 @@
   <head>
     <title>Gems</title>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+      #nav-drawer-btn, #nav-drawer-menu, #app, #options {
+        display: none;
+        opacity: 0;
+      }
+    </style>
   </head>
   <body>
+    <div id="nav-drawer-btn">
+      <svg height="32px" id="Layer_1" version="1.1" viewBox="0 0 32 32" width="32" height="32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <path fill="#ffffff" d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"/>
+      </svg>
+    </div>
+    <div id="nav-drawer-menu">
+      <hr>
+      <div id="refillButton">Refill empty cells</div>
+    </div>
     <div id="options">
       <div class="wrapper">
         <div>
@@ -24,15 +39,12 @@
           </select>
         </div>
         <div class="clr"></div>
-        <div style="margin-top: 7rem; text-align: right;">
+        <div style="margin-top: 3rem; text-align: right;">
           <button id="startButton">Start</button>
         </div>
       </div>
     </div>
-    <div id="toolbar" style="display: none; opacity: 0;">
-      <button id="refillButton">Refill</button>
-    </div>
-    <div id="app" style="display: none; opacity: 0;"></div>
+    <div id="app"></div>
     <script src="./bundle.js"></script>
   </body>
 </html>

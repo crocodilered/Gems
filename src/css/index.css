@@ -5,6 +5,7 @@
 
 body {
   background-color: #000000;
+  height: 100%;
 }
 
 #app {
@@ -36,18 +37,7 @@ body {
   background-image: url('../assets/white-gem.png');
 }
 
-#toolbar {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-}
-
-#toolbar.show {
-  display: block!important;
-  opacity: 1!important;
-}
-
-button, select {
+#options button, #options select {
   text-transform: uppercase;
   font-size: 1.3rem;
   border-radius: 10px;
