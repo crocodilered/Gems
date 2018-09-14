@@ -73,9 +73,8 @@ class Presenter {
 
   // Undo last move by restoring model from backup
   undoLastMove () {
-     this.model.setData(this.modelDataBackup)
-     console.log(this.model.table)
-     this.view.render(this.model)
+    this.model.setData(this.modelDataBackup)
+    this.view.render(this.model)
   }
 
   moveRowUp (pointX, pointY) {

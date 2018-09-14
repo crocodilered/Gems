@@ -21,15 +21,13 @@ class App {
 
     this.navDrawer = new NavigationDrawer('nav-drawer-btn', 'nav-drawer-menu')
 
-    document.getElementById('refillButton')
-      .addEventListener('click', event => {
-        this.presenter.refillEmptyCells()
-      })
-    
-    document.getElementById('undoButton')
-      .addEventListener('click', event => {
-        this.presenter.undoLastMove()
-      })
+    document.getElementById('refillButton').addEventListener('click', event => {
+      this.presenter.refillEmptyCells()
+    })
+
+    document.getElementById('undoButton').addEventListener('click', event => {
+      this.presenter.undoLastMove()
+    })
   }
 
   run () {
