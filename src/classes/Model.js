@@ -24,7 +24,8 @@ class Model {
   }
 
   get (x, y) {
-    return this.table[y][x]
+    if (this.table[y]) return this.table[y][x]
+    return null
   }
 
   set (x, y, gem) {
