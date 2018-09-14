@@ -28,7 +28,7 @@ class NavigationDrawer {
 
     window.document.addEventListener('click', event => {
       // Close menu if blur
-      for (let i = 0; i < event.path.length; i++ ) {
+      for (let i = 0; i < event.path.length; i++) {
         if (event.path[i].id === 'nav-drawer-menu' || event.path[i].id === 'nav-drawer-btn') {
           return
         }

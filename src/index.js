@@ -11,6 +11,6 @@ window.addEventListener('load', () => {
     const app = new App()
     app.run()
   })
-  
+
   document.getElementById('options').style.opacity = 1
 })

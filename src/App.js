@@ -19,7 +19,7 @@ class App {
     const view = new View('app')
     this.presenter = new Presenter(model, view)
 
-    const navDrawer = new NavigationDrawer('nav-drawer-btn', 'nav-drawer-menu')
+    this.navDrawer = new NavigationDrawer('nav-drawer-btn', 'nav-drawer-menu')
 
     const refillButton = document.getElementById('refillButton')
     refillButton.addEventListener('click', event => {
