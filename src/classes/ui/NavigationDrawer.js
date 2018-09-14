@@ -35,6 +35,12 @@ class NavigationDrawer {
       }
       this.hide()
     })
+
+    this.menuElem.addEventListener('webkitTransitionEnd', event => {
+      (this.visible())
+        ? this.buttonElem.classList.add('show')
+        : this.buttonElem.classList.remove('show')
+    })
   }
 
   visible () {

@@ -1,9 +1,23 @@
 #nav-drawer-btn {
   position: absolute;
-  top: 10px;
-  left: 10px;
   z-index: 1001;
+  padding: 10px;
+  font-size: 1.3rem;
+  color: #ffffff;
   cursor: pointer;
+  font-family: sans-serif;
+}
+
+#nav-drawer-btn .fa-times {
+  display: none;
+}
+
+#nav-drawer-btn.show .fa-times {
+  display: inline;
+}
+
+#nav-drawer-btn.show .fa-bars {
+  display: none;
 }
 
 #nav-drawer-menu {
@@ -17,7 +31,7 @@
   transition: .7s;
   overflow-x: hidden;
   z-index: 1000;
-  padding-top: 50px;
+  padding-top: 43px;
 }
 
 #nav-drawer-menu.show {
