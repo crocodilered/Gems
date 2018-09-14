@@ -42,3 +42,7 @@
 #nav-drawer-menu div.selected {
   background: rgba(255, 255, 255, .3);
 }
+
+#nav-drawer-menu div i.fas {
+  margin-right: .4rem;
+}
