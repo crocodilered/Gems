@@ -3,7 +3,7 @@ class Presenter {
 
   constructor (model, view) {
     this.model = model
-    this.modelDataBackup = null
+    this.modelDataBackup = []
     this.view = view
   }
 
@@ -47,8 +47,7 @@ class Presenter {
     if (gem1.color !== gem2.color) return false
 
     // Backup model for undo
-    this.modelDataBackup = this.model.copyData()
-    console.log(this.modelDataBackup)
+    this.modelDataBackup.push(this.model.copyData())
 
     // Everythin is okay, merge gems
     gem2.weight += gem1.weight
@@ -73,8 +72,10 @@ class Presenter {
 
   // Undo last move by restoring model from backup
   undoLastMove () {
-    this.model.setData(this.modelDataBackup)
-    this.view.render(this.model)
+    if (this.modelDataBackup.length > 0) {
+      this.model.setData(this.modelDataBackup.pop())
+      this.view.render(this.model)
+    }
   }
 
   moveRowUp (pointX, pointY) {

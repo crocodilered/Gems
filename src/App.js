@@ -28,6 +28,10 @@ class App {
     document.getElementById('undoButton').addEventListener('click', event => {
       this.presenter.undoLastMove()
     })
+
+    document.addEventListener('keypress', event => {
+      if (event.ctrlKey && event.keyCode === 26) this.presenter.undoLastMove()
+    })
   }
 
   run () {
