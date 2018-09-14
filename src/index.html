@@ -5,10 +5,34 @@
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
   </head>
   <body>
-    <div id="toolbar">
+    <div id="options">
+      <div class="wrapper">
+        <div>
+          <label>Field size:</label>
+          <select id="fieldSize">
+            <option value="5">5×5</option>
+            <option value="7">7×7</option>
+            <option value="9">9×9</option>
+          </select>
+        </div>
+        <div class="clr"></div>
+        <div>
+          <label>Number of gem types:</label>
+          <select id="gemTypesCount">
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+        <div class="clr"></div>
+        <div style="margin-top: 7rem; text-align: right;">
+          <button id="startButton">Start</button>
+        </div>
+      </div>
+    </div>
+    <div id="toolbar" style="display: none; opacity: 0;">
       <button id="refillButton">Refill</button>
     </div>
-    <div id="app" style="opacity: 0;"></div>
+    <div id="app" style="display: none; opacity: 0;"></div>
     <script src="./bundle.js"></script>
   </body>
 </html>

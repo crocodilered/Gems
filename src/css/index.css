@@ -8,10 +8,14 @@ body {
 }
 
 #app {
-  display: flex;
   flex-wrap: wrap;
   position: absolute;
   top: 0px;
+}
+
+#app.show {
+  display: flex!important;
+  opacity: 1!important;
 }
 
 #app .cell {
@@ -38,17 +42,66 @@ body {
   left: 5px;
 }
 
-#toolbar button {
+#toolbar.show {
+  display: block!important;
+  opacity: 1!important;
+}
+
+button, select {
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 1.3rem;
   border-radius: 10px;
   padding: .5rem 1rem;
   background: #000000;
   color: #ffffff;
-  border: 1px solid #ffffff;
   cursor: pointer;
+  font-family: sans-serif;
+  border: 1px solid greenyellow;
 }
 
-#toolbar button:focus {
-  outline:0;
+#options {
+  margin-top: 10%;
+  display: flex;
+  justify-content: center;
+}
+
+#options.hide {
+  display: none!important;
+}
+
+#options .wrapper {
+  background: rgba(255,255,255, .1);
+  padding: 2rem;
+  border-radius: 2rem;
+}
+
+#options .wrapper div {
+  margin: 2rem 0;
+}
+
+#options .wrapper .clr {
+  clear: both;
+  height: 1px;
+  margin: 0;
+}
+
+#options label, #options select, #options button {
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 1.3rem;
+}
+
+#options select {
+  margin-left: .5rem;
+  float: right;
+  
+}
+
+#options select, #options button {
+  padding: .5rem 1rem;
+  border: 1px solid greenyellow;
+}
+
+select:focus, button:focus {
+  outline: 0;
 }

@@ -11,7 +11,11 @@ import Presenter from 'classes/Presenter'
 class App {
 
   constructor () {
-    const model = new Model({ width: 7, height: 7 })
+    const size = document.getElementById('fieldSize').value
+    const gemTypesCount = document.getElementById('gemTypesCount').value
+    
+
+    const model = new Model({ width: size, height: size }, gemTypesCount)
     const view = new View('app')
     this.presenter = new Presenter(model, view)
 
