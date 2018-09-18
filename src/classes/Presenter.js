@@ -5,6 +5,7 @@ class Presenter {
     this.model = model
     this.modelDataBackup = []
     this.view = view
+    this.respectGravity = false
   }
 
   run () {
@@ -63,9 +64,15 @@ class Presenter {
 
     // Move row
     if (direction === 'l') this.moveRowLeft(x1, y1)
-    if (direction === 'u') this.moveRowUp(x1, y1)
     if (direction === 'r') this.moveRowRight(x1, y1)
     if (direction === 'd') this.moveRowDown(x1, y1)
+    if (direction === 'u') {
+      if (this.respectGravity) {
+        this.moveRowDown(x1, y1)
+      } else {
+        this.moveRowUp(x1, y1)
+      }
+    }
 
     return true
   }
@@ -89,7 +96,13 @@ class Presenter {
     for (let y = pointY; y > 0; y--) {
       this.model.set(pointX, y, this.model.get(pointX, y - 1))
     }
-    this.model.clear(pointX, 0)
+    if (this.respectGravity) {
+      // Put new random gem to the top of the row
+      this.model.set(pointX, 0, this.model.randomGem())
+    } else {
+      // Simply clear top of the row
+      this.model.clear(pointX, 0)
+    }
   }
 
   moveRowLeft (pointX, pointY) {

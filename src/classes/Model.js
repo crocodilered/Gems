@@ -20,6 +20,11 @@ class Model {
     this.gemTypesCount = gemTypesCount
   }
 
+  randomGem () {
+    const color = Gem.randomColor(this.gemTypesCount)
+    return new Gem(color, 1)
+  }
+
   get (x, y) {
     if (this.table[y]) return this.table[y][x]
     return null
@@ -39,14 +44,12 @@ class Model {
 
   /**
    * Populate model with gems.
-   * If type is defined, gems have same color == fixedColor
    */
-  populate (fixedColor = null) {
+  populate () {
     for (let y = 0; y < this.size.height; y++) {
       let row = []
       for (let x = 0; x < this.size.width; x++) {
-        const color = fixedColor || Gem.randomColor(this.gemTypesCount)
-        row.push(new Gem(color, 1))
+        row.push(this.randomGem(this.gemTypesCount))
       }
       this.table.push(row)
     }
@@ -73,8 +76,7 @@ class Model {
     for (let y = 0; y < this.size.height; y++) {
       for (let x = 0; x < this.size.width; x++) {
         if (!this.get(x, y)) {
-          const color = Gem.randomColor(this.gemTypesCount)
-          this.set(x, y, new Gem(color, 1))
+          this.set(x, y, this.randomGem())
         }
       }
     }
