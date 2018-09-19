@@ -28,7 +28,7 @@ class App {
     })
 
     document.getElementById('undoButton').addEventListener('click', event => {
-      this.presenter.undoLastMove()
+      this.presenter.undoMove()
     })
 
     document.addEventListener('keypress', event => {
