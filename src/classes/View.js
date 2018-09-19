@@ -20,7 +20,8 @@ class View {
     if (w < h) {
       // Portrait
       this.cellSize = w / model.size.width
-      this.rootElem.style.top = ((h - w) / 2) + 'px'
+      // this.rootElem.style.top = ((h - w) / 2) + 'px'
+      this.rootElem.style.top = '20px'
     } else {
       // Landscape
       this.cellSize = h / model.size.height
@@ -34,6 +35,7 @@ class View {
   }
 
   render (model) {
+    console.log(model.table)
     let html = ''
     if (!this.cellSize) this.preRender(model)
     for (let y = 0; y < model.size.height; y++) {
@@ -49,7 +51,7 @@ class View {
     let html = ''
     let css = `width: ${this.cellSize}px; height: ${this.cellSize}px;`
     if (gem) {
-      let bgSize = 20 + gem.weight * 10
+      let bgSize = 20 + gem.weight * 5
       css += ` background-size: ${bgSize}%`
       html += `<div class="cell" style="${css}" data-x="${x}" data-y="${y}" data-color="${gem.color}"></div>`
     } else {

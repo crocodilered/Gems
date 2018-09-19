@@ -8,14 +8,14 @@ class SwipeDetector {
     this.direction = ''
 
     this.sX = 0
-    this.sY = 1
+    this.sY = 0
     this.eX = 0
     this.eY = 0
 
-    this.minX = 10  // min x swipe for horizontal swipe
-    this.maxX = 40  // max x difference for vertical swipe
-    this.minY = 10  // min y swipe for vertical swipe
-    this.maxY = 40  // max y difference for horizontal swipe
+    this.minX = 20  // min x swipe for horizontal swipe
+    this.maxX = 60  // max x difference for vertical swipe
+    this.minY = 20  // min y swipe for vertical swipe
+    this.maxY = 60  // max y difference for horizontal swipe
 
     elem.addEventListener('mousedown', event => this.swipeStart(event), false)
     elem.addEventListener('touchstart', event => this.swipeStart(event), false)
