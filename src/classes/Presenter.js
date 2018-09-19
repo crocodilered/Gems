@@ -1,6 +1,4 @@
-
 class Presenter {
-
   constructor (model, view) {
     this.model = model
     this.modelDataBackup = []
@@ -22,8 +20,7 @@ class Presenter {
   swipeCallback (elem, direction) {
     let x = parseInt(elem.getAttribute('data-x'))
     let y = parseInt(elem.getAttribute('data-y'))
-    const moved = this.moveGem(x, y, direction)
-    if (moved) this.view.render(this.model)
+    this.moveGem(x, y, direction)
   }
 
   moveGem (x1, y1, direction) {
@@ -62,63 +59,57 @@ class Presenter {
 
     this.model.clear(x1, y1)
 
-    // Move row
-    if (direction === 'l') this.moveRowLeft(x1, y1)
-    if (direction === 'r') this.moveRowRight(x1, y1)
-    if (direction === 'd') this.moveRowDown(x1, y1)
-    if (direction === 'u') {
-      if (this.respectGravity) {
-        this.moveRowDown(x1, y1)
-      } else {
-        this.moveRowUp(x1, y1)
-      }
+    // Shift row
+    if (direction === 'l') this.shiftRowLeft(x1, y1)
+    if (direction === 'r') this.shiftRowRight(x1, y1)
+    if (direction === 'd') this.shiftRowDown(x1, y1)
+    if (direction === 'u') this.shiftRowUp(x1, y1)
+
+    if (this.respectGravity) {
+      this.model.collapseEmptyCells()
+      this.model.refillEmptyCells()
     }
 
-    return true
+    this.view.render(this.model)
   }
 
   // Undo last move by restoring model from backup
-  undoLastMove () {
+  undoMove () {
     if (this.modelDataBackup.length > 0) {
       this.model.setData(this.modelDataBackup.pop())
       this.view.render(this.model)
     }
   }
 
-  moveRowUp (pointX, pointY) {
+  shiftRowUp (pointX, pointY) {
     for (let y = pointY; y < this.model.size.height - 1; y++) {
       this.model.set(pointX, y, this.model.get(pointX, y + 1))
     }
     this.model.clear(pointX, this.model.size.height - 1)
   }
 
-  moveRowDown (pointX, pointY) {
+  // TODO: move all shift* methods to Model class
+
+  shiftRowDown (pointX, pointY) {
     for (let y = pointY; y > 0; y--) {
       this.model.set(pointX, y, this.model.get(pointX, y - 1))
     }
-    if (this.respectGravity) {
-      // Put new random gem to the top of the row
-      this.model.set(pointX, 0, this.model.randomGem())
-    } else {
-      // Simply clear top of the row
-      this.model.clear(pointX, 0)
-    }
+    this.model.clear(pointX, 0)
   }
 
-  moveRowLeft (pointX, pointY) {
+  shiftRowLeft (pointX, pointY) {
     for (let x = pointX; x < this.model.size.height - 1; x++) {
       this.model.set(x, pointY, this.model.get(x + 1, pointY))
     }
     this.model.clear(this.model.size.width - 1, pointY)
   }
 
-  moveRowRight (pointX, pointY) {
+  shiftRowRight (pointX, pointY) {
     for (let x = pointX; x > 0; x--) {
       this.model.set(x, pointY, this.model.get(x - 1, pointY))
     }
     this.model.clear(0, pointY)
   }
-
 }
 
 export default Presenter

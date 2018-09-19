@@ -81,6 +81,19 @@ class Model {
       }
     }
   }
+
+  collapseEmptyCells () {
+    for (let y = 0; y < this.size.height; y++) {
+      for (let x = 0; x < this.size.width; x++) {
+        if (!this.get(x, y)) {
+          // Shift all the upper gems down
+          for (let y1 = y; y1 > 0; y1--) {
+            this.set(x, y1, this.get(x, y1 - 1))
+          }
+        }
+      }
+    }
+  }
 }
 
 export default Model
