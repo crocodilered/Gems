@@ -90,6 +90,8 @@ class Model {
           for (let y1 = y; y1 > 0; y1--) {
             this.set(x, y1, this.get(x, y1 - 1))
           }
+          // Clear gem on the top
+          this.clear(x, 0)
         }
       }
     }

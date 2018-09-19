@@ -45,6 +45,7 @@ class Presenter {
     if (gem1.color !== gem2.color) return false
 
     // Backup model for undo
+    // TODO: move it to Model class
     this.modelDataBackup.push(this.model.copyData())
 
     // Everythin is okay, merge gems
@@ -59,15 +60,14 @@ class Presenter {
 
     this.model.clear(x1, y1)
 
-    // Shift row
-    if (direction === 'l') this.shiftRowLeft(x1, y1)
-    if (direction === 'r') this.shiftRowRight(x1, y1)
-    if (direction === 'd') this.shiftRowDown(x1, y1)
-    if (direction === 'u') this.shiftRowUp(x1, y1)
-
     if (this.respectGravity) {
       this.model.collapseEmptyCells()
       this.model.refillEmptyCells()
+    } else {
+      if (direction === 'l') this.shiftRowLeft(x1, y1)
+      if (direction === 'r') this.shiftRowRight(x1, y1)
+      if (direction === 'd') this.shiftRowDown(x1, y1)
+      if (direction === 'u') this.shiftRowUp(x1, y1)
     }
 
     this.view.render(this.model)
